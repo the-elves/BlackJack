@@ -1,0 +1,90 @@
+# depslib dependency file v1.0
+1445849789 source:/home/illuminati/Blackjack/BlackjackServer/main.cpp
+	<iostream>
+	"Casino.h"
+
+1445623630 source:/home/illuminati/Blackjack/BlackjackServer/src/Card.cpp
+	"Card.h"
+
+1445673080 /home/illuminati/Blackjack/BlackjackServer/include/Card.h
+
+1445855169 source:/home/illuminati/Blackjack/BlackjackServer/src/Casino.cpp
+	"Casino.h"
+	"GameMessage.h"
+
+1445849820 /home/illuminati/Blackjack/BlackjackServer/include/Casino.h
+	<vector>
+	"CommunicationModule.h"
+
+1445853803 source:/home/illuminati/Blackjack/BlackjackServer/src/CommunicationModule.cpp
+	"CommunicationModule.h"
+	<iostream>
+
+1445854756 /home/illuminati/Blackjack/BlackjackServer/include/CommunicationModule.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<iostream>
+	<arpa/inet.h>
+	<ctype.h>
+	<ifaddrs.h>
+	<string>
+	<unistd.h>
+	<strings.h>
+	<stdlib.h>
+	<string.h>
+	<json11.hpp>
+	<map>
+	"GameMessage.h"
+	"ControlMessage.h"
+
+1445848548 source:/home/illuminati/Blackjack/BlackjackServer/src/ControlMessage.cpp
+	"ControlMessage.h"
+
+1445848299 /home/illuminati/Blackjack/BlackjackServer/include/ControlMessage.h
+	<Message.h>
+	<string>
+
+1445854516 /home/illuminati/Blackjack/BlackjackServer/include/Message.h
+	<iostream>
+	<string>
+
+1445622954 source:/home/illuminati/Blackjack/BlackjackServer/src/Dealer.cpp
+	"Dealer.h"
+
+1445853185 /home/illuminati/Blackjack/BlackjackServer/include/Dealer.h
+	"Card.h"
+	<json11.hpp>
+	<vector>
+	"Player.h"
+
+1445850039 /home/illuminati/Blackjack/BlackjackServer/include/Player.h
+	<string>
+
+1445850018 source:/home/illuminati/Blackjack/BlackjackServer/src/GameMessage.cpp
+	"GameMessage.h"
+
+1445855126 /home/illuminati/Blackjack/BlackjackServer/include/GameMessage.h
+	<Message.h>
+	<Card.h>
+
+1445846439 source:/home/illuminati/Blackjack/BlackjackServer/src/Message.cpp
+	"Message.h"
+
+1445625974 source:/home/illuminati/Blackjack/BlackjackServer/src/Player.cpp
+	"Player.h"
+
+1445297401 /home/illuminati/Blackjack/BlackjackServer/include/json11.hpp
+	<string>
+	<vector>
+	<map>
+	<memory>
+	<initializer_list>
+
+1445297401 source:/home/illuminati/Blackjack/BlackjackServer/src/json11.cpp
+	"json11.hpp"
+	<cassert>
+	<cmath>
+	<cstdlib>
+	<cstdio>
+	<limits>
+

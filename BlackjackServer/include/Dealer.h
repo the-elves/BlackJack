@@ -1,9 +1,11 @@
 #ifndef DEALER_H
 #define DEALER_H
 
-#include "card.h"
-#include "player.h"
-
+#include "Card.h"
+#include <json11.hpp>
+#include <vector>
+#include "Player.h"
+using namespace std;
 class Dealer
 {
     public:
@@ -23,6 +25,8 @@ class Dealer
         void writeToPlayers();
         void play(); //adds cards and calculates myHand
         void decider();
+
+
 
 
     protected:

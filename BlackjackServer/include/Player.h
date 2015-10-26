@@ -1,13 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
+#include<string>
+using namespace std;
 enum Result { WIN, LOSE, PUSH, BLACKJACK };
 
 class Player
 {
     public:
         //constructor, destructor
-        Player(string name, string ip, int sock, int port);
+        //Player(string name, string ip, int sock, int port);
+        Player();
         virtual ~Player();
 
         //getter, setter
