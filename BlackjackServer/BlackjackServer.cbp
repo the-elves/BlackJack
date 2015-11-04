@@ -24,14 +24,22 @@
 		<Unit filename="include/Card.h" />
 		<Unit filename="include/Casino.h" />
 		<Unit filename="include/CommunicationModule.h" />
+		<Unit filename="include/ControlMessage.h" />
 		<Unit filename="include/Dealer.h" />
+		<Unit filename="include/GameMessage.h" />
+		<Unit filename="include/Message.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/json11.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Card.cpp" />
 		<Unit filename="src/Casino.cpp" />
 		<Unit filename="src/CommunicationModule.cpp" />
+		<Unit filename="src/ControlMessage.cpp" />
 		<Unit filename="src/Dealer.cpp" />
+		<Unit filename="src/GameMessage.cpp" />
+		<Unit filename="src/Message.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/json11.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
