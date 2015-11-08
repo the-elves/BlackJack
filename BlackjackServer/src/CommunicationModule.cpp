@@ -21,11 +21,12 @@ void CommunicationModule::startServer(int &retSocket, string &clientIp, int &cli
     localhost.sin_port = htons(1234);
     int b = bind(servSocket,(sockaddr*)&localhost,sizeof(sockaddr_in));
     if(b<0){
+        cout<<"Couldnt Bind"<<endl;
         exit(1);
     }
     bzero(&client, sizeof(client));
     int clilen = sizeof(sockaddr_in);
-    cout<<"Listening on 1234";
+    cout<<"Listening on 1234"<<endl;
     listen(servSocket, 5);
     int clisocket = accept(servSocket, (sockaddr*)&client, (socklen_t*)&clilen);
     retSocket = clisocket;
