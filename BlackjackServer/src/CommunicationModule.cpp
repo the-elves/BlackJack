@@ -3,17 +3,7 @@
 CommunicationModule::CommunicationModule()
 {
     getOwnIp();
-
-}
-/**
-***************************Blocking Server Start Call***************************************
-*******************Needs to be called from seperate thread for this*************************
-***********************Loop also need to be Managed by caller*******************************
-
-**/
-void CommunicationModule::startServer(int &retSocket, string &clientIp, int &clientPort){
-
-    sockaddr_in localhost, client;
+    sockaddr_in localhost;
     servSocket = socket(AF_INET,SOCK_STREAM ,0);
     bzero(&localhost,sizeof(sockaddr_in));
     localhost.sin_family = AF_INET;
@@ -24,6 +14,17 @@ void CommunicationModule::startServer(int &retSocket, string &clientIp, int &cli
         cout<<"Couldnt Bind"<<endl;
         exit(1);
     }
+
+}
+/**
+***************************Blocking Server Start Call***************************************
+*******************Needs to be called from seperate thread for this*************************
+***********************Loop also need to be Managed by caller*******************************
+
+**/
+void CommunicationModule::startServer(int &retSocket, string &clientIp, int &clientPort){
+
+    sockaddr_in client;
     bzero(&client, sizeof(client));
     int clilen = sizeof(sockaddr_in);
     cout<<"Listening on 1234"<<endl;
@@ -45,11 +46,12 @@ void CommunicationModule::startServer(int port, int &retSocket, string &clientIp
     localhost.sin_port = htons(port);
     int b = bind(servSocket,(sockaddr*)&localhost,sizeof(sockaddr_in));
     if(b<0){
+        cout<<"Couldnt bind"<<endl;
         exit(1);
     }
     bzero(&client, sizeof(client));
     int clilen = sizeof(sockaddr_in);
-    cout<<"Listening on 1234";
+    cout<<"Listening on 1234"<<endl;
     listen(servSocket, 5);
     int clisocket = accept(servSocket, (sockaddr*)&client, (socklen_t*)&clilen);
     retSocket = clisocket;

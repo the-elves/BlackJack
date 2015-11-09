@@ -4,6 +4,7 @@ Casino::Casino()
 {
     int socket, clientPort;
     string clientIp, message;
+    while(1){
     comm.startServer(socket, clientIp, clientPort);
     comm.readMessage(socket, message);
     cout<<message;
@@ -14,7 +15,7 @@ Casino::Casino()
     gm.gameMessageType = GameMessage::ACTION;
     gm.action=GameMessage::REQUEST_BET;
     comm.sendMessage(gm);
-
+    }
 
 }
 
