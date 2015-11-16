@@ -18,24 +18,19 @@ class Dealer
         int getPort();
 
         //rest methods
-        void Connect();
+        void shuffle();
+        void cardsInit();
         void addPlayer(Player p);
-        void dealCards(int num);
-        void readPlayerMoves();
-        void writeToPlayers();
-        void play(); //adds cards and calculates myHand
-        void decider();
-
-
-
+        Card dealCard();
+        vector<Player> players;
 
     protected:
 
     private:
         int port;
         int myHand;
-        vector<Player> players;
-        vector<Card> cards;
+
+        vector<Card> cardsAvailable, cardsDealt;
 };
 
 #endif // DEALER_H

@@ -1,5 +1,6 @@
 #include "CommunicationModule.h"
 #include<iostream>
+#include <sstream>
 CommunicationModule::CommunicationModule()
 {
     getOwnIp();
@@ -22,44 +23,28 @@ CommunicationModule::CommunicationModule()
 ***********************Loop also need to be Managed by caller*******************************
 
 **/
-void CommunicationModule::startServer(int &retSocket, string &clientIp, int &clientPort){
+void CommunicationModule::acceptConnection(int &retSocket, string &clientIp, int &clientPort, string &name){
 
     sockaddr_in client;
     bzero(&client, sizeof(client));
     int clilen = sizeof(sockaddr_in);
-    cout<<"Listening on 1234"<<endl;
+    cout<<endl<<"Listening on 1234"<<endl;
     listen(servSocket, 5);
     int clisocket = accept(servSocket, (sockaddr*)&client, (socklen_t*)&clilen);
     retSocket = clisocket;
     clientIp = inet_ntoa(client.sin_addr);
     clientPort = ntohs(client.sin_port);
-
-}
-
-void CommunicationModule::startServer(int port, int &retSocket, string &clientIp, int &clientPort){
-
-    sockaddr_in localhost, client;
-    servSocket = socket(AF_INET,SOCK_STREAM ,0);
-    bzero(&localhost,sizeof(sockaddr_in));
-    localhost.sin_family = AF_INET;
-    inet_aton(myIp, &(localhost.sin_addr));
-    localhost.sin_port = htons(port);
-    int b = bind(servSocket,(sockaddr*)&localhost,sizeof(sockaddr_in));
-    if(b<0){
-        cout<<"Couldnt bind"<<endl;
-        exit(1);
+    string str, err;
+    readMessage(retSocket, str);
+    json11::Json a = json11::Json::parse(str.c_str(), err);
+    name = a["from"].dump();
+    if(name.size() > 0) {
+        name.erase(0, 1);
+        name.erase(name.find('"'));
     }
-    bzero(&client, sizeof(client));
-    int clilen = sizeof(sockaddr_in);
-    cout<<"Listening on 1234"<<endl;
-    listen(servSocket, 5);
-    int clisocket = accept(servSocket, (sockaddr*)&client, (socklen_t*)&clilen);
-    retSocket = clisocket;
-    clientIp = inet_ntoa(client.sin_addr);
-    clientPort = ntohs(client.sin_port);
+    cout<<name<<" joined"<<endl;
 
 }
-
 /*char cliName [100];
     int n = read(clisocket, cliName,100);
     cliName[n] = '\0';
@@ -94,7 +79,10 @@ blocking Read call
 */
 void CommunicationModule::readMessage(int clisocket, string &message){
     char rawMessage[100];
-    int n = read(clisocket, rawMessage,100);
+    int n = 0;
+    //do {
+        n = read(clisocket, rawMessage,100);
+    //} while(n > 0);
     rawMessage[n] = '\0';
     message = string(rawMessage);
 }
@@ -116,24 +104,31 @@ void CommunicationModule::sendMessage(GameMessage m){
     messageContents["to"] = m.to;
     messageContents["messageType"] = "gameMessage";
     if(m.gameMessageType == GameMessage::ACTION){
-        messageContents["gameMessageType"] = "Action";
+        messageContents["gameMessageType"] = "action";
         switch(m.action){
-            case GameMessage::REQUEST_BET:
-                messageContents["actionType"] = "Requesting Bets";
+            case GameMessage::HIT:
+                messageContents["actionType"] = "Hit";
             break;
 
-            case GameMessage::REQUEST_DECISION:
-                messageContents["actionType"] = "Requesting Decision";
+            case GameMessage::STAND:
+                messageContents["actionType"] = "Stand";
             break;
-
-
 
         }
     }
     else if(m.gameMessageType == GameMessage::CARD){
         messageContents["gameMessageType"] = "card";
-        messageContents["suit"] = "cardsuit";
-        messageContents["rank"] = "cardrank";
+        switch(m.action){
+            case GameMessage::NONE:
+                messageContents["actionType"] = "None";
+            break;
+
+        }
+        messageContents["suit"] = m.getCard().getCardSuit();
+        messageContents["rank"] = m.getCard().getCardRank();
+        std::stringstream ss;
+        ss << m.getCard().getCardValue();
+        messageContents["value"] = ss.str();
 
     }
     string messageString = json11::Json(messageContents).dump();

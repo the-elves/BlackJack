@@ -9,7 +9,7 @@ class Player
     public:
         //constructor, destructor
         //Player(string name, string ip, int sock, int port);
-        Player();
+        Player(int sock, int port, string ip, string name);
         virtual ~Player();
 
         //getter, setter
@@ -19,13 +19,13 @@ class Player
         int getHand();
         void setStand(bool stand);
         bool getStand();
-        void setResult(Result r);
+        void setPlaying(bool playing);
+        bool getPlaying();
 
     protected:
     private:
         string name, ip;
         int sock, port, hand;
-        bool stand;
-        Result r;
+        bool stand, playing;
 };
 #endif // PLAYER_H

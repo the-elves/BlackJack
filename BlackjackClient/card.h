@@ -11,7 +11,7 @@ class Card : public QObject
     Q_OBJECT
 public:
     //constructor, destructor
-    explicit Card(QObject *parent = 0, QString name, QString ip, int sock, int port);
+    explicit Card(QObject *parent = 0);
 
     //getter, setter
     void setRank(Rank r);

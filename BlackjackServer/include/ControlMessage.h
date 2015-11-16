@@ -9,7 +9,7 @@ class ControlMessage : public Message
 {
     public:
         string controlText;
-        ControlMessage(string);
+        ControlMessage(int, string, string, string);
         virtual ~ControlMessage();
     protected:
     private:

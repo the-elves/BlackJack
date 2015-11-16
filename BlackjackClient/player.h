@@ -34,7 +34,7 @@ private:
     QString name, OwnIp;
     int hand, bet, money;
     bool stand;
-    QVector<Card> cards;
+    std::vector<Card> cards;
 
 signals:
 

@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QTcpSocket>
+#include <QHostAddress>
+#include <iostream>
 
 int main(int argc, char *argv[])
 {

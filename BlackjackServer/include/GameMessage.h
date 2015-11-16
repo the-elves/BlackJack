@@ -9,13 +9,15 @@ class GameMessage : public Message
     public:
         GameMessageType gameMessageType;
         ActionType action;
-        ResultType result;
-        Card c;
+        //Card c;
         GameMessage();
+        GameMessage(int sock, string from, string to, GameMessageType gm, ActionType a, Card card);
+        Card getCard();
 
         virtual ~GameMessage();
     protected:
     private:
+        Card c;
 };
 
 #endif // GAMEMESSAGE_H

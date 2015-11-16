@@ -20,8 +20,9 @@ class CommunicationModule
 {
     public:
         CommunicationModule();
-        void startServer(int &socket, string &cilentIp, int &clientPort);
-        void startServer(int port, int &retSocket, string &clientIp, int &clientPort);
+
+        void acceptConnection(int &socket, string &cilentIp, int &clientPort, string &name);
+
         void sendMessage(int socket, string message);
         void readMessage(int clisock, string &message);
 
@@ -29,6 +30,9 @@ class CommunicationModule
         void sendMessage(ControlMessage);
 
         virtual ~CommunicationModule();
+
+        int maxfd = 0;
+
     protected:
     private:
         char myIp[12];

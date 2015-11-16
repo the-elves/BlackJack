@@ -18,9 +18,16 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add option="-g" />
 			<Add option="-fexceptions" />
+			<Add option="-lpthread" />
+			<Add option="-pthread" />
 		</Compiler>
+		<Linker>
+			<Add option="-lpthread" />
+			<Add option="-pthread" />
+		</Linker>
 		<Unit filename="include/Card.h" />
 		<Unit filename="include/Casino.h" />
 		<Unit filename="include/CommunicationModule.h" />
